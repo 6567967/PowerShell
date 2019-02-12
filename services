@@ -1,0 +1,15 @@
+Get-Service -DisplayName STEALTHbits*
+
+Clear-Host
+function ServiceExists{
+    param ([string]$ServiceDisplayName)
+    $Service = Get-Service -DisplayName $ServiceDisplayName -ErrorAction SilentlyContinue
+    if (!$Sevice) {
+        Write-Host -ForegroundColor Red $ServiceDisplayName " is not installed on this computer."
+    }
+    else {
+        Write-Host -ForegroundColor Green $ServiceDisplayName + $ServiceDisplayName.State
+    }
+}
+
+ServiceExists("STEALTHbits Windows File Monitoring Service")
